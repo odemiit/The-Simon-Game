@@ -9,6 +9,16 @@ var gamePattern = [];
 
 var userClickedPattern = [];
 
+var level = 0;
+var gameStarted = false;
+
+$(document).keydown(function () {
+    if (!gameStarted) {
+        $("#level-title").text("Level " + level);
+        nextSequence();
+        gameStarted = true;
+    }
+});
 
 $("button").click(function () {
     var userChosenColour = $(this).attr("id");
@@ -16,6 +26,9 @@ $("button").click(function () {
 });
 
 function nextSequence() {
+    level++;
+    $("#level-title").text("Level " + level);
+
     var randomNumber = Math.floor(Math.random() * 4);
 
     var randomChosenColour = buttonColours[randomNumber];
@@ -25,6 +38,7 @@ function nextSequence() {
 
     playSound(randomChosenColour);
 }
+
 
 function playSound(name) {
     var sound = new Audio("sounds/" + name + ".mp3");
