@@ -12,7 +12,7 @@ var userClickedPattern = [];
 var level = 0;
 var gameStarted = false;
 
-$(document).keydown(function () {
+$(document).on("keypress", function () {
     if (!gameStarted) {
         $("#level-title").text("Level " + level);
         nextSequence();
@@ -20,7 +20,7 @@ $(document).keydown(function () {
     }
 });
 
-$("button").click(function () {
+$(".btn").click(function () {
     var userChosenColour = $(this).attr("id");
     userClickedPattern.push(userChosenColour);
 
@@ -68,6 +68,7 @@ function nextSequence() {
 
     playSound(randomChosenColour);
 }
+
 
 
 function playSound(name) {
